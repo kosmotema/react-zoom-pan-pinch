@@ -7,7 +7,7 @@ import {
 } from "./handlers.utils";
 import { animations } from "../animations/animations.constants";
 import { animate, handleCancelAnimation } from "../animations/animations.utils";
-import { getCenterPosition } from "../../utils";
+import { getCenterPosition } from "../../utils/styles.utils";
 
 export const zoomIn =
   (contextInstance: ReactZoomPanPinchContext) =>

@@ -4,7 +4,7 @@ import { handleZoomToPoint } from "../zoom/zoom.logic";
 import { animate } from "../animations/animations.utils";
 import { createState } from "../../utils/state.utils";
 import { checkZoomBounds } from "../zoom/zoom.utils";
-import { roundNumber } from "../../utils";
+import { roundNumber } from "../../utils/calculations.utils";
 import { initialState } from "../../constants/state.constants";
 import { PositionType } from "../../models/calculations.model";
 import {
