@@ -114,7 +114,6 @@ import {
   TransformWrapper,
   TransformComponent,
   ReactZoomPanPinchRef,
-  ReactZoomPanPinchHandlers,
 } from "@kosmotema/react-zoom-pan-pinch";
 
 import "@kosmotema/react-zoom-pan-pinch/dist/index.css";
@@ -131,7 +130,7 @@ const Component = () => {
     zoomIn,
     zoomOut,
     resetTransform,
-  }: ReactZoomPanPinchHandlers) => (
+  }: ReactZoomPanPinchRef) => (
     <>
       <button onClick={() => zoomIn()}>+</button>
       <button onClick={() => zoomOut()}>-</button>
