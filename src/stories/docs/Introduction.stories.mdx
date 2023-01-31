@@ -4,15 +4,20 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # React-zoom-pan-pinch
 
-[![NPM](https://img.shields.io/npm/v/react-zoom-pan-pinch.svg)](https://www.npmjs.com/package/react-zoom-pan-pinch)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-zoom-pan-pinch)
+[![NPM](https://img.shields.io/npm/v/@kosmotema/react-zoom-pan-pinch.svg)](https://www.npmjs.com/package/@kosmotema/react-zoom-pan-pinch)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@kosmotema/react-zoom-pan-pinch)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-![NPM](https://img.shields.io/npm/l/react-zoom-pan-pinch)
-![npm](https://img.shields.io/npm/dm/react-zoom-pan-pinch)
-![GitHub stars](https://img.shields.io/github/stars/prc5/react-zoom-pan-pinch?style=social)
+![NPM](https://img.shields.io/npm/l/@kosmotema/react-zoom-pan-pinch)
+![npm](https://img.shields.io/npm/dm/@kosmotema/react-zoom-pan-pinch)
+![GitHub stars](https://img.shields.io/github/stars/kosmotema/react-zoom-pan-pinch?style=social)
 
 > Super fast and light react npm package for zooming, panning and pinching html
 > elements in easy way
+>
+> Also supports working in Web Components and Shadow DOM
+
+- [Demo](https://kosmotema.github.io/react-zoom-pan-pinch/?path=/story/examples-big-image--big-image)
+- [Docs](https://kosmotema.github.io/react-zoom-pan-pinch/?path=/story/docs-props--page)
 
 <br />
 <br />
@@ -35,7 +40,13 @@ npm install --save react-zoom-pan-pinch
 or
 
 ```bash
-yarn add react-zoom-pan-pinch
+yarn add @kosmotema/react-zoom-pan-pinch
+```
+
+or
+
+```bash
+pnpm add @kosmotema/react-zoom-pan-pinch
 ```
 
 ## Usage
@@ -43,7 +54,12 @@ yarn add react-zoom-pan-pinch
 ```jsx
 import React, { Component } from "react";
 
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import {
+  TransformWrapper,
+  TransformComponent,
+} from "@kosmotema/react-zoom-pan-pinch";
+
+import "@kosmotema/react-zoom-pan-pinch/dist/index.css";
 
 class Example extends Component {
   render() {
@@ -63,7 +79,12 @@ or
 ```jsx
 import React, { Component } from "react";
 
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import {
+  TransformWrapper,
+  TransformComponent,
+} from "@kosmotema/react-zoom-pan-pinch";
+
+import "@kosmotema/react-zoom-pan-pinch/dist/index.css";
 
 class Example extends Component {
   render() {
@@ -92,6 +113,60 @@ class Example extends Component {
 }
 ```
 
+or
+
+```tsx
+import React, { useRef } from "react";
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+  ReactZoomPanPinchHandlers,
+} from "@kosmotema/react-zoom-pan-pinch";
+
+import "@kosmotema/react-zoom-pan-pinch/dist/index.css";
+
+const Component = () => {
+  const transformComponentRef = useRef<ReactZoomPanPinchRef>(null!);
+
+  const zoomToImage = () => {
+    const { zoomToElement } = transformComponentRef.current;
+    zoomToElement("imgExample");
+  };
+
+  const Control = ({
+    zoomIn,
+    zoomOut,
+    resetTransform,
+  }: ReactZoomPanPinchHandlers) => (
+    <>
+      <button onClick={() => zoomIn()}>+</button>
+      <button onClick={() => zoomOut()}>-</button>
+      <button onClick={() => resetTransform()}>x</button>
+    </>
+  );
+
+  return (
+    <TransformWrapper
+      initialScale={1}
+      initialPositionX={200}
+      initialPositionY={100}
+      ref={transformComponentRef}
+    >
+      {(utils) => (
+        <>
+          <Control {...utils} />
+          <TransformComponent>
+            <img src="image.jpg" alt="test" id="imgExample" />
+            <div onClick={zoomToImage}>Example text</div>
+          </TransformComponent>
+        </>
+      )}
+    </TransformWrapper>
+  );
+};
+```
+
 ## License
 
-MIT © [prc5](https://github.com/prc5)
+MIT © [prc5](https://github.com/prc5), [kosmotema](https://github.com/kosmotema)

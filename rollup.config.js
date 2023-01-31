@@ -1,3 +1,4 @@
+import { defineConfig } from "rollup";
 import babel from "@rollup/plugin-babel";
 import external from "rollup-plugin-peer-deps-external";
 import del from "rollup-plugin-delete";
@@ -6,7 +7,7 @@ import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import pkg from "./package.json";
 
-export default [
+export default defineConfig([
   {
     input: pkg.source,
     output: [
@@ -32,6 +33,7 @@ export default [
       typescript(),
       postcss({
         modules: true,
+        extract: "index.css",
       }),
     ],
     external: Object.keys(pkg.peerDependencies || {}),
@@ -48,4 +50,4 @@ export default [
       }),
     ],
   },
-];
+]);
