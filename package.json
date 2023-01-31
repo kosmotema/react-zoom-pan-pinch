@@ -111,5 +111,8 @@
     "svg",
     "bounds",
     "context"
-  ]
+  ],
+  "dependencies": {
+    "use-constant": "^1.1.1"
+  }
 }
