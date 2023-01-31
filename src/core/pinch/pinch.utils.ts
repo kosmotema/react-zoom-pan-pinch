@@ -9,7 +9,7 @@ export const isPinchStartAllowed = (
   const { disabled, excluded } = contextInstance.setup.pinch;
   const { isInitialized } = contextInstance;
 
-  const target = event.target as HTMLElement;
+  const target = event.composedPath()[0] as HTMLElement;
   const isAllowed = isInitialized && !disabled && target;
 
   if (!isAllowed) return false;
