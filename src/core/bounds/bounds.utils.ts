@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { roundNumber } from "../../utils";
+import { roundNumber } from "../../utils/calculations.utils";
 import {
   BoundsType,
   PositionType,
