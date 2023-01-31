@@ -1,4 +1,5 @@
-import React, { useImperativeHandle, useMemo, useRef } from "react";
+import React, { useImperativeHandle, useMemo } from "react";
+import useConstant from "use-constant";
 
 import { ZoomPanPinch } from "../core/instance.core";
 import { ReactZoomPanPinchProps, ReactZoomPanPinchRef } from "../models";
@@ -13,7 +14,7 @@ export const TransformWrapper = React.forwardRef(
     ref: React.Ref<ReactZoomPanPinchRef>,
   ) => {
     const { children } = props;
-    const instance = useRef(new ZoomPanPinch(props)).current;
+    const instance = useConstant(() => new ZoomPanPinch(props));
 
     const content = useMemo(() => {
       if (typeof children === "function") {
